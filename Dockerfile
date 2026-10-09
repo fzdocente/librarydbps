@@ -2,19 +2,16 @@
 FROM eclipse-temurin:17-jdk-alpine AS build
 WORKDIR /app
 
-# Copiar archivos de Maven y dependencias para aprovechar la caché
-COPY mvnw .
-COPY .mvn .mvn
+# Instalar Maven en la imagen alpina ligera
+RUN apk add --no-cache maven
+
+# Copiar el pom.xml y descargar dependencias
 COPY pom.xml .
-
-# Dar permisos de ejecución al wrapper de Maven
-RUN chmod +x mvnw
-
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copiar el código fuente y empaquetar la app omitiendo pruebas
 COPY src src
-RUN ./mvnw package -DskipTests
+RUN mvn package -DskipTests
 
 # --- Etapa de ejecución ---
 FROM eclipse-temurin:17-jre-alpine
