@@ -33,7 +33,7 @@ public class CalculadoraBasicaTest {
         // Act - Assert
         Double valor1 = 9.0;
         Double valor2 = -4.5;
-        Double valorEsperado = -4.5;
+        Double valorEsperado = 4.5;
         assertEquals(valorEsperado,calculadoraBasica.sumar(valor1, valor2),"Debe ser uno positivo y otro negativo");
     }
     @Test

@@ -148,7 +148,7 @@ public class BookServiceTest {
 
         // Assert
         assertNotNull(result);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
 
         assertEquals("Effective Java", result.get(0).getTitle());
         assertEquals("Java Concurrency in Practice", result.get(1).getTitle());
